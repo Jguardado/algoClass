@@ -88,52 +88,60 @@ Given a directed graph and two nodes in the graph, write a function that indicat
 
 */
 
-
-function Graph () {
+function Graph() {
   this._nodes = {};
 }
 
-Graph.prototype.addNode = function(value) {
+Graph.prototype.addNode = function (value) {
   // implement me...
 };
+
 // Time complexity:
 
-Graph.prototype.removeNode = function(value) {
+Graph.prototype.removeNode = function (value) {
   // implement me...
 };
+
 // Time complexity:
 
-Graph.prototype.contains = function(value) {
+Graph.prototype.contains = function (value) {
   // implement me...
 };
+
 // Time complexity:
 
-Graph.prototype.addEdge = function(value1, value2) {
+Graph.prototype.addEdge = function (value1, value2) {
   // implement me...
 };
+
 // Time complexity:
 
-Graph.prototype.removeEdge = function(value1, value2) {
+Graph.prototype.removeEdge = function (value1, value2) {
   // implement me...
 };
+
 // Time complexity:
 
-Graph.prototype.hasEdge = function(value1, value2) {
+Graph.prototype.hasEdge = function (value1, value2) {
   // implement me...
 };
+
 // Time complexity:
 
-Graph.prototype.forEach = function(fn) {
+Graph.prototype.forEach = function (fn) {
   // implement me...
 };
+
 // Time complexity:
 
-Graph.prototype.traverseDepthFirst = function(value, fn, visited, distance) {
+Graph.prototype.traverseDepthFirst = function (value, fn, visited, distance) {
   // implement me...
 };
+
 // Time complexity:
 
-Graph.prototype.traverseBreadthFirst = function(value, fn) {
+Graph.prototype.traverseBreadthFirst = function (value, fn) {
   // implement me...
 };
+
 // Time complexity:

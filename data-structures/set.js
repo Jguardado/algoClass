@@ -43,31 +43,35 @@ function Set(capacity) {
   // implement me...
 }
 
-Set.prototype.count = function() {
+Set.prototype.count = function () {
   // implement me...
 };
+
 // Time complexity:
 
-Set.prototype.add = function(value) {
+Set.prototype.add = function (value) {
   // implement me...
 };
+
 // Time complexity:
 
-Set.prototype.delete = function(value) {
+Set.prototype.delete = function (value) {
   // implement me...
 };
+
 // Time complexity:
 
-Set.prototype.has = function(value) {
+Set.prototype.has = function (value) {
   // implement me...
 };
+
 // Time complexity:
 
-Set.prototype.forEach = function(callback) {
+Set.prototype.forEach = function (callback) {
   // implement me...
 };
-// Time complexity:
 
+// Time complexity:
 
 /*
 *** Exercises:

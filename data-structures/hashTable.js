@@ -60,11 +60,13 @@ Resize the hash table:
 // Simple hashing function to use in your implementation
 function simpleHash(str, tableSize) {
   var hash = 0;
-  for (var i=0; i<str.length; i++) {
-    hash += str.charCodeAt(i) * (i+1);
+  for (var i = 0; i < str.length; i++) {
+    hash += str.charCodeAt(i) * (i + 1);
   }
+
   return hash % tableSize;
 }
+
 // source: http://pmav.eu/stuff/javascript-hashing-functions/source.html
 
 function HashTable(/* ??? */) {
@@ -74,46 +76,50 @@ function HashTable(/* ??? */) {
 // This is a helper method that you may want to implement to help keep your code DRY
 // You can implement the hash table methods without it.
 // I recommend skipping it and coming back if you find that it will be useful
-HashTable.prototype.find = function(key) {
+HashTable.prototype.find = function (key) {
   // implement me...
   return {
     match: match,
     bucket: bucket,
-    matchIndex: matchIndex
+    matchIndex: matchIndex,
   };
 };
 
-HashTable.prototype.set = function(key, value) {
+HashTable.prototype.set = function (key, value) {
   // implement me...
 };
+
 // Time complexity:
 
-HashTable.prototype.get = function(key) {
+HashTable.prototype.get = function (key) {
   // implement me...
 };
+
 // Time complexity:
 
-HashTable.prototype.has = function(key) {
+HashTable.prototype.has = function (key) {
   // implement me...
 };
+
 // Time complexity:
 
-HashTable.prototype.delete = function(key) {
+HashTable.prototype.delete = function (key) {
   // implement me...
 };
+
 // Time complexity:
 
-HashTable.prototype.count = function() {
+HashTable.prototype.count = function () {
   // implement me...
 };
+
 // Time complexity:
 
-HashTable.prototype.forEach = function(callback) {
+HashTable.prototype.forEach = function (callback) {
   // implement me...
 };
+
 // Time complexity:
-
-
 
 /*
 *** Exercises:
