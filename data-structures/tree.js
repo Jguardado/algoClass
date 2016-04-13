@@ -41,21 +41,44 @@ https://en.wikipedia.org/wiki/Trie
 
 function Tree(value) {
   // implement me...
+  this.value = value;
+  this.children = [];
 }
 
 Tree.prototype.addChild = function (value) {
   // implement me...
+  var newNode = new Tree(value);
+  this.children.push(newNode);
+
 };
 
 // Time complexity:
 
 Tree.prototype.contains = function (value) {
   // implement me...
+  if (this.value === value) {
+    console.log('true');
+    return true;
+  }
+
+  for (var i = 0; i < this.children.length; i++) {
+    this.children[i].contains(value);
+  }
+
+  console.log('false');
+  return false;
 };
 
 // Time complexity:
 
 Tree.prototype.traverseDepthFirst = function (fn) {
+
+  fn(this.value);
+
+  for (var i = 0; i < this.children.length; i++) {
+    this.children[i].traverseDepthFirst(fn);
+  }
+
   // implement me...
 };
 

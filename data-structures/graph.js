@@ -168,12 +168,15 @@ Graph.prototype.forEach = function (fn) {
 
 Graph.prototype.traverseDepthFirst = function (value, fn, visited, distance) {
   // implement me...
+  //this graph doesnt have a starting point or target what is this looking for?
+
 };
 
 // Time complexity:
 
 Graph.prototype.traverseBreadthFirst = function (value, fn) {
   // implement me...
+  //this graph doesnt have a starting point or target what is this looking for?
 };
 
 // Time complexity:
