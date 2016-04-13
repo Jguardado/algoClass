@@ -62,6 +62,11 @@ function Queue(capacity) {
 
 Queue.prototype.enqueue = function (value) {
   // implement me...
+  if (this.count === this.max) {
+    console.log('youve reached your max');
+    return;
+  }
+
   this.storage[this.end++] = value;
   this.count++;
 };
@@ -87,6 +92,51 @@ Queue.prototype.count = function () {
   return this.count;
 };
 
+Queue.prototype.contains = function (value) {
+  for (var key in this.storage) {
+    if (this.storage[key] === value) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
+Queue.prototype.until = function (value) {
+  var times = 0;
+  var keys = Object.keys(this.storage);
+
+  for (var i = keys.length - 1; i >= 0; i--) {
+    if (keys[i] === value) {
+      return;
+    }
+
+    times++;
+  }
+
+  return times;
+};
+
+Queue.prototype.enqueueLeft = function () {
+  //this is the same as the existing queue.
+  //but since the queue is an object there is no left or right
+
+};
+
+Queue.prototype.enqueueRight = function () {
+
+};
+
+Queue.prototype.dequeueLeft = function () {
+
+};
+
+Queue.prototype.dequeueRight = function () {
+  //this is the same as the existing queue.
+  //but since the queue is an object there is no left or right
+
+};
+
 // Time complexity:
 Constant;
 
@@ -94,6 +144,8 @@ Constant;
 *** Exercises:
 
 1. Implement a queue using two stacks.
+
+//work on this one
 
 2. Implement a double-ended queue, with the following methods: enqueueLeft, dequeueLeft, enqueueRight, dequeueRight.
 

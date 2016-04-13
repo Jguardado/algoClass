@@ -41,15 +41,29 @@ Make your set able to take objects, arrays, and functions as values in addition 
 
 function Set(capacity) {
   // implement me...
+  this.max = capacity;
+  this.storage = {};
+  this.size = 0;
+  this.tracker = false;
 }
 
 Set.prototype.count = function () {
   // implement me...
+  console.log(this.size);
+  return this.size;
 };
 
 // Time complexity:
 
 Set.prototype.add = function (value) {
+  if (this.size === this.max) {
+    console.log('too many');
+    return;
+  }
+
+  this.storage[value] = value;
+  this.size++;
+
   // implement me...
 };
 
@@ -57,18 +71,85 @@ Set.prototype.add = function (value) {
 
 Set.prototype.delete = function (value) {
   // implement me...
+  if (this.storage[value]) {
+    this.storage[value] = undefined;
+    return true;
+  }
+
+  return false;
 };
 
 // Time complexity:
 
 Set.prototype.has = function (value) {
   // implement me...
+  if (this.storage[value]) {
+    return true;
+  };
+
+  return false;
 };
 
 // Time complexity:
 
 Set.prototype.forEach = function (callback) {
   // implement me...
+  for (var key in this.storage) {
+    callback(this.storage[key]);
+  }
+};
+
+Set.prototype.union = function (newSet) {
+  // => mySet with added values from otherSet
+  // add any values from otherSet into mySet that are not yet there
+  // ex: {1,2,3} union {2,3,4} => {1,2,3,4}
+  if (Array.isArray(newSet)) {
+    for (var i = 0; i < newSet.length; i++) {
+      this.storage[newSet[i]] = newSet[i];
+    }
+  } else {
+    for (var key in newSet) {
+      this.storage[newSet[key]] = newSet[key];
+    }
+  }
+
+};
+
+Set.prototype.intersection = function (newSet) {
+  //I'm just gonna assume sets will be objects.
+  var intersection = [];
+  for (var key in newSet) {
+    if (this.storage[newSet[key]] === newSet[key]) {
+      intersection.push(newSet[key]);
+    }
+  }
+
+  console.log('this is the intersection', intersection);
+};
+
+Set.prototype.difference = function (newSet) {
+  var differences = [];
+  for (var key in newSet) {
+    if (this.storage[newSet[key]] !== newSet[key]) {
+      differences.push(newSet[key]);
+    }
+  }
+
+  console.log('this is the differences', differences);
+
+};
+
+Set.prototype.hasSubset = function (subSet) {
+  for (var key in subSet) {
+    if (this.storage[subSet[key]] === subSet[key]) {
+      this.tracker = true;
+    }
+
+    this.tracker = false;
+  }
+
+  console.log(this.tracker);
+  return this.tracker;
 };
 
 // Time complexity:
@@ -109,3 +190,31 @@ whitelistFilter(collection <array>, whitelist <array>)
 * exercises adapted from Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne
 
  */
+var someSub = {
+  5:5,
+  9:9,
+  13:13,
+};
+var otherSet = {
+  3:3,
+  6:6,
+  9:9,
+  5:5,
+  3:3,
+  11:11,
+
+};
+
+var sets = new Set(6);
+sets.add(5);
+sets.add(9);
+sets.add(10);
+sets.add(4);
+console.log(sets);
+sets.difference(otherSet);
+sets.intersection(otherSet);
+sets.hasSubset(someSub);
+
+// sets.union(otherSet);
+
+console.log(sets);
