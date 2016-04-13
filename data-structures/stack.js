@@ -53,16 +53,30 @@ What's the time complexity?
 function Stack(capacity) {
   // implement me...
   this.max = capacity;
-  this.count = 0;
+  this.size = 0;
+  this.min = undefined;
+  this.minHistory = [];
+  this.storage = {};
 }
 
 Stack.prototype.push = function (value) {
-  if (this.count === this.max) {
-    return 'you cant add anymore';
+  if (this.size === this.max) {
+    console.log('you cant add anymore');
+    return;
   }
 
-  this.count++;
-  this.storage[this.count] = value;
+  if (this.min === undefined) {
+    this.min = value;
+  }
+
+  if (this.min > value) {
+    console.log('conditional passed');
+    this.minHistory.push(this.min);
+    this.min = value;
+  }
+
+  this.storage[this.size++] = value;
+  console.log(this.minHistory);
 
   // implement me...
 };
@@ -71,9 +85,14 @@ Stack.prototype.push = function (value) {
 
 Stack.prototype.pop = function () {
   // implement me...
-  var popped = this.storage[this.count];
-  this.storage[this.count] = undefined;
-  this.count--;
+  var popped = this.storage[this.size];
+  this.storage[this.size] = undefined;
+  this.size--;
+
+  if (popped === this.min) {
+    this.min = this.minHistory[this.minHistory.length - 1];
+    this.minHistory.pop();
+  }
 
   return popped;
 };
@@ -82,14 +101,34 @@ Stack.prototype.pop = function () {
 
 Stack.prototype.peek = function () {
   // implement me...
-  return this.storage[this.end];
+  console.log(this.storage[this.size]);
+  return this.storage[this.size];
 };
 
 // Time complexity:
 
 Stack.prototype.count = function () {
   // implement me...
-  return this.count;
+  console.log(this.size);
+  return this.size;
+};
+
+Stack.prototype.contains = function (value) {
+  for (var key in this.storage) {
+    if (this.storage[key] === value) {
+      console.log('true');
+      return true;
+    }
+  }
+
+  console.log('false');
+  return false;
+};
+
+Stack.prototype.lowest = function () {
+  console.log(this.min);
+  return this.min;
+
 };
 
 // Time complexity:
@@ -112,3 +151,17 @@ You are given three towers (stacks) and N disks, each of different size. You can
    3. no disk can be placed on top of a disk that is smaller than it
 The disks begin on tower#1. Write a function that will move the disks from tower#1 to tower#3 in such a way that none of the constraints are violated.
  */
+
+var stack = new Stack(4);
+stack.push(5);
+stack.push(1);
+stack.push(0);
+stack.push(7);
+stack.push(8);
+stack.pop();
+stack.lowest();
+stack.pop();
+stack.pop();
+stack.lowest();
+console.log(stack)
+;
