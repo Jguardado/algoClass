@@ -94,17 +94,28 @@ function Graph() {
 
 Graph.prototype.addNode = function (value) {
   // implement me...
+  this._nodes[value] = [];
 };
 
 // Time complexity:
 
 Graph.prototype.removeNode = function (value) {
+  this._nodes[value] = undefined;
+
   // implement me...
 };
 
 // Time complexity:
 
 Graph.prototype.contains = function (value) {
+  if (this._nodes[value]) {
+    console.log('true');
+    return true;
+  }
+
+  console.log('false');
+  return false;
+
   // implement me...
 };
 
@@ -112,23 +123,44 @@ Graph.prototype.contains = function (value) {
 
 Graph.prototype.addEdge = function (value1, value2) {
   // implement me...
+  this._nodes[value1].push(value2);
 };
 
 // Time complexity:
 
 Graph.prototype.removeEdge = function (value1, value2) {
   // implement me...
+  for (var i = 0; i < this._nodes[value1]; i++) {
+    if (this._nodes[value1][i] === value2) {
+      this._nodes[value1].splice(i, 1);
+    }
+  }
+
 };
 
 // Time complexity:
 
 Graph.prototype.hasEdge = function (value1, value2) {
   // implement me...
+  for (var i = 0; i < this._nodes[value1]; i++) {
+    if (this._nodes[value1][i] === value2) {
+      console.log('true');
+      return true;
+    }
+  }
+
+  console.log('false');
+  return false;
 };
 
 // Time complexity:
 
 Graph.prototype.forEach = function (fn) {
+  for (var key in this._nodes) {
+    //this would alter the key itself which is a representation of the node
+    fn(key, this._nodes[key], this._nodes);
+  }
+
   // implement me...
 };
 
@@ -145,3 +177,20 @@ Graph.prototype.traverseBreadthFirst = function (value, fn) {
 };
 
 // Time complexity:
+
+var graph = new Graph();
+
+graph.addNode(5);
+graph.addNode(7);
+graph.addNode(3);
+graph.addNode(4);
+graph.addNode(2);
+
+// graph.contains(12);
+graph.addEdge(5, 2);
+graph.addEdge(5, 4);
+graph.addEdge(2, 4);
+graph.addEdge(5, 3);
+console.log(graph);
+graph.removeEdge(5, 2);
+graph.hasEdge(5, 2);
