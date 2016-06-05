@@ -69,8 +69,11 @@ function simpleHash(str, tableSize) {
 
 // source: http://pmav.eu/stuff/javascript-hashing-functions/source.html
 
-function HashTable(/* ??? */) {
-  // implement me...
+function HashTable(capacity) {
+  var result = {};
+  var storage = [];
+  var limit = capacity;
+  var count = 0;
 }
 
 // This is a helper method that you may want to implement to help keep your code DRY
@@ -86,25 +89,57 @@ HashTable.prototype.find = function (key) {
 };
 
 HashTable.prototype.set = function (key, value) {
-  // implement me...
+  var i = simpleHash(key);
+
+  var bucket = this.get(i);
+
+  if (!bucket) {
+    bucket = [];
+    bucket.push([key, value]);
+    this.storage[i] = bucket;
+  }
+
+  bucket.push([key, value]);
 };
 
 // Time complexity:
 
 HashTable.prototype.get = function (key) {
-  // implement me...
+  var i = simpleHash(key);
+
+  if (this.storage[i]) {
+    //this is a bucket
+    return this.storage[i];
+  }
+
+  return null;
 };
 
 // Time complexity:
 
 HashTable.prototype.has = function (key) {
   // implement me...
+  var i = simpleHash(key);
+
+  if (this.storage[i]) {
+    for (var j = 0; this.storage[i].length; j++) {
+      if (this.storage[i][j][0] === key) {
+        return true;
+      }
+    }
+  }
+
+  return false;
 };
 
 // Time complexity:
 
 HashTable.prototype.delete = function (key) {
   // implement me...
+  var tuple = this.get(key);
+
+  //I have to set this postion to undefined
+
 };
 
 // Time complexity:

@@ -17,10 +17,17 @@ Extra credit: Implement the function both iteratively and recursively.
 //By using .slice() I'm iterating over the existing array and creating a new one.
 //This effects both time complexity and space complexity
 var binarySearch = function (sortedArr, value) {
-  var mid = Math.floor(sortedArr.length / 2);
-  var startIndex;
-  var endIndex;
+  //this finds the intial mid point
+  var mid;
+  if (mid === undefined) {
+    var mid = Math.floor(sortedArr.length - 1 / 2);
+  }
+
+  var startIndex = 0;
+  var endIndex = sortedArr.length - 1;
   var halfed;
+
+  mid = Math.floor(startIndex / endIndex);
 
   //I knwo I need to keep track of the indexes in the orignal array. Slice creates a new array and change sthe indexes
   //By creating tracker variables for the start and finish of the existing indexs...
@@ -32,15 +39,18 @@ var binarySearch = function (sortedArr, value) {
   if (sortedArr[mid] === value) {
     console.log('found it');
     return value;
+
   } else if (sortedArr[mid] > value) {
     console.log('searching lower half');
     startIndex;
     halfed = sortedArr.slice(0, mid);
     binarySearch(halfed, value);
+
   } else if (sortedArr[mid] < value) {
     console.log('searching upper half');
     halfed = sortedArr.slice(mid, sortedArr.length - 1);
     binarySearch(halfed, value);
+
   } else {
     console.log('item not found');
     return null;

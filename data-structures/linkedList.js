@@ -82,55 +82,90 @@ Reimplement stack and queue data structures using linked lists.
 function Node(value) {
   this.next = null;
   this.value = value;
+  this.prev = null;
 }
 
 function LinkedList(headValue) {
-  if (headValue === undefined) console.log('Must provide value for first node');
+  if (headValue === undefined) {
+    console.log('Must provide value for first node');
+  }
+
   this.head = new Node(headValue);
+  this.tail = null;
 }
 
 LinkedList.prototype.forEach = function (callback) {
   // implement me...
+
 };
 
 // Time complexity:
 
 LinkedList.prototype.print = function () {
   // implement me...
+  console.log(this.value);
+
+  if (this.next) {
+    this.next.print();
+  }
 };
 
 // Time complexity:
 
 LinkedList.prototype.insertAfter = function (node, value) {
   // implement me...
+  if (node.next) {
+    var tempNode = node.next;
+    node.next = new Node(value);
+    node.next.next = tempNode;
+  }
 };
 
 // Time complexity:
 
 LinkedList.prototype.removeAfter = function (node) {
   // implement me...
+  var nodeToRemove = node.next;
+  node.next = nodeToRemove.next;
 };
 
 // Time complexity:
 
 LinkedList.prototype.insertHead = function (value) {
   // implement me...
+  if (this.head) {
+    this.head.next = new Node(this.head.value);
+    this.head.value = value;
+  }
 };
 
 // Time complexity:
 
 LinkedList.prototype.removeHead = function () {
   // implement me...
+  if (this.head) {
+    this.head = this.head.next;
+  }
 };
 
 LinkedList.prototype.findNode = function (value) {
   // implement me...
+  if (this.value === value) {
+    return 'found it';
+  } else {
+    this.next.findNode(value);
+  }
+
+  return 'not found';
 };
 
 // Time complexity:
 
 LinkedList.prototype.appendToTail = function (value) {
   // implement me...
+  if (this.tail) {
+    this.tail.value;
+  }
 };
 
 // Time complexity:

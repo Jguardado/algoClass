@@ -31,25 +31,27 @@ repeat...
 
 */
 
-var Heap = function() {
+var Heap = function () {
   this.storage = [];
 };
 
-Heap.prototype.insert = function(value) {
+Heap.prototype.insert = function (value) {
   // Push to storage array
   this.storage.push(value);
 
   var that = this;
 
   // Recursive function to handle swaps, input index
-  var reheapify = function(index) {
+  var reheapify = function (index) {
 
     // Get parent index
-    var parentInd = Math.ceil(index/2-1);
+    var parentInd = Math.ceil(index / 2 - 1);
+
     // Base Case : value < parent or parent is null
     if (parentInd < 0 || that.storage[index] <= that.storage[parentInd]) {
-      return 'value added to index '+index;
+      return 'value added to index ' + index;
     }
+
     // Recursive Case: swap with parent and make recursive call
     var temp = that.storage[index];
     that.storage[index] = that.storage[parentInd];
@@ -57,12 +59,13 @@ Heap.prototype.insert = function(value) {
 
     return reheapify(parentInd);
   };
-  return reheapify(that.storage.length-1);
+
+  return reheapify(that.storage.length - 1);
 };
 
 // Heap remove max method on prototype
 // Remove the max value from a heap, reorder the heap, and return the max value
-Heap.prototype.removeMax = function() {
+Heap.prototype.removeMax = function () {
   // Check if heap is currently empty
   if (this.storage.length === 0) {
     // If nothing to remove then return null
@@ -77,6 +80,7 @@ Heap.prototype.removeMax = function() {
   // Handle all other cases where heap has more than one node
   // Preserve the max value in order to return it
   var maxValue = this.storage[0];
+
   // Replace the root node with the last node of the heap and remove the last node
   this.storage[0] = this.storage.pop();
 
@@ -84,20 +88,22 @@ Heap.prototype.removeMax = function() {
   var that = this;
 
   // Recursive function to restore the heap property of the heap
-  var reheapify = function(index) {
+  var reheapify = function (index) {
     // Set index of max value to current node's index
     var maxIndex = index;
 
     // Check first child node's value against current node
-    if ((2*index + 1 < that.storage.length) && (that.storage[2*index + 1] > that.storage[index])) {
+    if ((2 * index + 1 < that.storage.length) && (that.storage[2 * index + 1] > that.storage[index])) {
       // If greater then set index of max value to first child node's index
-      maxIndex = 2*index + 1;
+      maxIndex = 2 * index + 1;
     }
+
     // Check second child node's value against current max node
-    if ((2*index + 2 < that.storage.length) && (that.storage[2*index + 2] > that.storage[maxIndex])) {
+    if ((2 * index + 2 < that.storage.length) && (that.storage[2 * index + 2] > that.storage[maxIndex])) {
       // If greater then set index of max value to second child node's index
-      maxIndex = 2*index + 2;
+      maxIndex = 2 * index + 2;
     }
+
     // If the index of the max value is not equal to the index of the current node
     // Then swap the nodes and reheapify at the new index of the current node
     if (maxIndex !== index) {
